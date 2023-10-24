@@ -5,31 +5,36 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.github.erlonpr.fastcalculation.Extras.EXTRA_SETTINGS
+import com.github.erlonpr.fastcalculation.databinding.FragmentGameBinding
 
 class GameFragment : Fragment() {
 
+    private lateinit var fragmentGameBinding: FragmentGameBinding
+
+    private lateinit var settings: Settings
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
-
+            settings = it.getParcelable(EXTRA_SETTINGS) ?: Settings()
         }
     }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_game, container, false)
+    ): View {
+        fragmentGameBinding = FragmentGameBinding.inflate(inflater, container, false)
+        return fragmentGameBinding.root
     }
 
     companion object {
         @JvmStatic
-        fun newInstance() =
+        fun newInstance(settings: Settings) =
             GameFragment().apply {
                 arguments = Bundle().apply {
-
+                    putParcelable(EXTRA_SETTINGS, settings)
                 }
             }
     }

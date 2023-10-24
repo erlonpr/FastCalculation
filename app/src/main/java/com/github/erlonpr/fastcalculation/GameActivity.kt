@@ -8,8 +8,7 @@ import android.widget.Toast
 import com.github.erlonpr.fastcalculation.Extras.EXTRA_SETTINGS
 import com.github.erlonpr.fastcalculation.databinding.ActivityGameBinding
 
-class GameActivity : AppCompatActivity() {
-
+class GameActivity : AppCompatActivity(), OnPlayGame {
     private val activityGameBinding: ActivityGameBinding by lazy {
         ActivityGameBinding.inflate(layoutInflater)
     }
@@ -56,4 +55,7 @@ class GameActivity : AppCompatActivity() {
         }
     }
 
+    override fun onPlayGame() {
+        supportFragmentManager.beginTransaction().replace(R.id.gameFl, GameFragment.newInstance(settings)).commit()
+    }
 }
