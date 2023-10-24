@@ -27,7 +27,8 @@ class GameActivity : AppCompatActivity() {
         }
 
         settings = intent.getParcelableExtra<Settings>(EXTRA_SETTINGS) ?: Settings()
-        Toast.makeText(this, settings.toString(), Toast.LENGTH_SHORT).show()
+
+        supportFragmentManager.beginTransaction().replace(R.id.gameFl, WelcomeFragment.newInstance(settings)).commit()
     }
 
     // associar menu_game.xml
