@@ -43,6 +43,8 @@ class GameActivity : AppCompatActivity(), OnPlayGame {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when(item.itemId) {
             R.id.restartGameMi -> {
+                // Reinicia o jogo
+                restartGame(this)
                 true
             }
             R.id.exitMi -> {
@@ -58,4 +60,10 @@ class GameActivity : AppCompatActivity(), OnPlayGame {
     override fun onPlayGame() {
         supportFragmentManager.beginTransaction().replace(R.id.gameFl, GameFragment.newInstance(settings)).commit()
     }
+
+
+    private fun restartGame(gameActivity: GameActivity) {
+        gameActivity.supportFragmentManager.beginTransaction().replace(R.id.gameFl, GameFragment.newInstance(gameActivity.settings)).commit()
+    }
+
 }
