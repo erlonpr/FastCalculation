@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.Menu
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.FragmentManager
 import com.github.erlonpr.fastcalculation.Extras.EXTRA_SETTINGS
 import com.github.erlonpr.fastcalculation.databinding.FragmentWelcomeBinding
 
@@ -31,6 +32,7 @@ class WelcomeFragment : Fragment() {
         "${getString(R.string.welcome)}, ${settings.playerName}!".also {
             fragmentWelcomeBinding.welcomeTv.text = it
         }
+        fragmentWelcomeBinding.welcomeTv.text="Welcome, ${settings.playerName}"
         fragmentWelcomeBinding.playBt.setOnClickListener {
             (context as OnPlayGame).onPlayGame()
         }
